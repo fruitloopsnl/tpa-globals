@@ -1,6 +1,31 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-meta/iron-meta.html">
+<!--
+`tpa-globals` is a generic element you can use to declare iron-meta(s) in the main document to
+implement the [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) such that instance
+of `iron-meta-query` has access to static data and instance of `tpa-globals-query` has access to
+dynamic data including data binding in polymer.
 
+Examples:
+```
+<head>
+	<link rel="import" href="bower_components/tpa-globals/tpa-globals.html">
+</head>
+
+<body>
+	<tpa-globals>
+		<iron-meta id="name" key="name" value="john"></iron-meta>
+		<iron-meta id="token" key="token"></iron-meta>
+		<iron-meta id="services" key="services" value='{"login": "/services/login"}'></iron-meta> 
+		<iron-meta id="accountSummaryData" key="accountSummaryData"></iron-meta>
+	</tpa-globals>
+</body>
+```
+
+@group TPA Elements
+@demo demo/index.html
+@element tpa-globals
+-->
 <dom-module id="tpa-globals">
 	<template>
 		<content>
@@ -32,6 +57,28 @@
 	})
 </script>
 
+<!--
+`tpa-globals-query` is a generic element you can use to get an update of iron-meta(s) declared in
+`tpa-globals` element child and normally used via data binding
+
+Examples:
+```
+<tpa-globals-query id="globals" key="name" value="{{name}}"></tpa-globals-query>
+<div>Name :{{name}}</div>
+```
+
+When updates to the value of a particular key, this element will get "notified"
+
+This example of the code is an example of updating the shared data globally:
+
+```
+document.querySelector('tpa-globals').setValue('name','smith')
+```
+
+@group TPA Elements
+@demo demo/index.html
+@element tpa-globals-query
+-->
 <script>
 	Polymer({
 		is: 'tpa-globals-query',
