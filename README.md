@@ -29,7 +29,7 @@ To define the data inside the index.html using tpa-globals element:
 	</tpa-globals>
 	<!-- Other elements -->
 </body>
-
+```
 
 For `static` data such as configuration, you can then use the set-up values, for example the services object utilizing `iron-meta-query` element
 
