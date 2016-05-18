@@ -1,0 +1,57 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-meta/iron-meta.html">
+
+<dom-module id="tpa-globals">
+	<template>
+		<content>
+			<!-- Define Data - Should contain iron-meta(s) id is mandatory -->
+			<!-- e.g. 
+				<iron-meta id="token" key="token"></iron-meta>
+				<iron-meta id="accountSummaryData" key="accountSummaryData"></iron-meta>
+				<iron-meta id="services" key="services"></iron-meta>
+			-->
+		</content>
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: 'tpa-globals',
+		setValue: function(key,val) {
+			var el = Polymer.dom(this).querySelector('#'+key);			
+			if(el) {
+				el.value = val;
+				var allGlobals = document.querySelectorAll('tpa-globals-query');
+				for(i=0;i<allGlobals.length;i++) {
+					allGlobals[i].updateValue(key);
+				}
+			}
+		},
+		hostAttributes: {
+		        hidden: true
+		}
+	})
+</script>
+
+<script>
+	Polymer({
+		is: 'tpa-globals-query',
+		properties: {
+			key: {
+				type: String,
+				notify: true
+			},
+			value: {
+				type: Object,
+				notify: true
+			}
+		},
+		ready: function() {			
+			this.value = new Polymer.IronMetaQuery({key: this.key}).value;			
+		},
+		updateValue: function(key) {
+			if (key == this.key) {
+				this.value = new Polymer.IronMetaQuery({key: this.key}).value;
+			}
+		}
+	});
+</script>

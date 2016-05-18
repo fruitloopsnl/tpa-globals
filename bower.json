@@ -1,0 +1,30 @@
+{
+  "name": "tpa-globals",
+  "homepage": "https://github.com/ING-Group/tpa-transaction-list",
+  "authors": [
+    "jwayong <januar@gmail.com>"
+  ],
+  "description": "Central element for the management of state across the application",
+  "main": "tpa-globals.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-meta": "PolymerElements/iron-meta#^1.1.1",
+    "polymer": "Polymer/polymer#^1.4.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "test-fixture": "polymerelements/test-fixture#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "resolutions": {
+    "polymer": "^1.4.0"
+  }
+}

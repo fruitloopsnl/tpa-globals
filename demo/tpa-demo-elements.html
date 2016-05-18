@@ -1,0 +1,59 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../tpa-globals.html">
+
+<dom-module id="tpa-demo-input">
+	<template>
+		<tpa-globals-query id="globals" key="token" value="{{token}}"></tpa-globals-query>
+		<div><span>Token Input: </span><input type="text" id="someinput" value="{{token::input}}"/></div>
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: 'tpa-demo-input',
+		properties: {
+			token: {
+				type: String,
+				notify: true,
+				observer: '_tokenChanged'
+			}
+		},
+		_tokenChanged: function(newValue,oldValue) {
+			var globals = document.querySelector('tpa-globals'); //only 1 element in SPA
+			globals.setValue('token',this.token);
+		}
+	});
+</script>
+
+<dom-module id="tpa-el1">
+	<template>
+		<tpa-globals-query id="globals" key="token" value="{{token}}"></tpa-globals-query>
+		<div>Token From Element 1: {{token}}</div>
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: 'tpa-el1',
+		properties: {
+			token: {
+				type: String,
+				notify: true
+			}
+		}
+	});
+</script>
+
+<dom-module id="tpa-el2">
+	<template>
+		<tpa-globals-query id="globals" key="token" value="{{token2}}"></tpa-globals-query>
+		<div>Token From Element 2: {{token2}}</div>
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: 'tpa-el2',
+		properties: {
+			type: String,
+			notify: true
+		}
+	});
+</script>
